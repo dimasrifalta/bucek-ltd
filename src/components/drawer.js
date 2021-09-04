@@ -26,19 +26,21 @@ const Drawer = ({
         placement={placement}
         handler={false}
         level={null}
-        duration='0.4s'
-        {...props}>
+        duration="0.4s"
+        {...props}
+      >
         {closeButton && (
-          <Box as='div' onClick={toggleHandler} sx={closeBtnStyle}>
+          <Box as="div" onClick={toggleHandler} sx={closeBtnStyle}>
             {closeButton}
           </Box>
         )}
         <Box sx={drawerStyle}>{children}</Box>
       </RcDrawer>
       <Box
-        className='drawer__handler'
+        className="drawer__handler"
         style={{ display: 'inline-block' }}
-        onClick={toggleHandler}>
+        onClick={toggleHandler}
+      >
         {drawerHandler}
       </Box>
     </Fragment>

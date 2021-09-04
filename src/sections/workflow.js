@@ -39,8 +39,8 @@ export default function WorkFlow() {
     <section sx={styles.workflow}>
       <Container>
         <SectionHeader
-          slogan='Whats the function'
-          title='Let’s see how it works'
+          slogan="Whats the function"
+          title="Let’s see how it works"
           isWhite={true}
         />
 
@@ -59,6 +59,7 @@ export default function WorkFlow() {
     </section>
   );
 }
+
 const styles = {
   workflow: {
     backgroundColor: 'primary',

@@ -1,10 +1,12 @@
 {
-  "name": "landing-page",
+  "name": "@landing/005-next",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
+    "serve": "next start",
+    "export": "next export",
     "postbuild": "next-sitemap"
   },
   "dependencies": {

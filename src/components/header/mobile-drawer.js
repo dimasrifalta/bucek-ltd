@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Box } from 'theme-ui';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Drawer from 'components/drawer';
+import { DrawerContext } from '../../contexts/drawer/drawer.context';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import { Link } from 'react-scroll';
 import {
@@ -31,42 +32,53 @@ const social = [
   },
 ];
 
-export default function MobileDrawer() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+const MobileDrawer = () => {
+  const { state, dispatch } = useContext(DrawerContext);
+
+  // Toggle drawer
+  const toggleHandler = React.useCallback(() => {
+    dispatch({
+      type: 'TOGGLE',
+    });
+  }, [dispatch]);
+
   return (
     <Drawer
-      width='320px'
+      width="320px"
       drawerHandler={
         <Box sx={styles.handler}>
-          <IoMdMenu size='26px' />
+          <IoMdMenu size="26px" />
         </Box>
       }
-      open={isDrawerOpen}
-      toggleHandler={() => setIsDrawerOpen((prevState) => !prevState)}
-      closeButton={<IoMdClose size='24px' color='#000000' />}
+      open={state.isOpen}
+      toggleHandler={toggleHandler}
+      closeButton={<IoMdClose size="24px" color="#000000" />}
       drawerStyle={styles.drawer}
-      closeBtnStyle={styles.close}>
+      closeBtnStyle={styles.close}
+    >
       <Scrollbars autoHide>
         <Box sx={styles.content}>
           <Box sx={styles.menu}>
-            {menuItems.map((menuItems, i) => (
+            {menuItems.map(({ path, label }, i) => (
               <Link
-                activeClass='active'
-                to={menuItems.path}
+                activeClass="active"
+                to={path}
                 spy={true}
                 smooth={true}
                 offset={-70}
                 duration={500}
-                key={i}>
-                {menuItems.label}
+                key={i}
+              >
+                {label}
               </Link>
             ))}
           </Box>
+
           <Box sx={styles.menuFooter}>
             <Box sx={styles.social}>
-              {social.map((socialItem, i) => (
-                <Box as='span' key={i} sx={styles.social.icon}>
-                  <Link to={socialItem.path}>{socialItem.icon}</Link>
+              {social.map(({ path, icon }, i) => (
+                <Box as="span" key={i} sx={styles.social.icon}>
+                  <Link to={path}>{icon}</Link>
                 </Box>
               ))}
             </Box>
@@ -75,7 +87,7 @@ export default function MobileDrawer() {
       </Scrollbars>
     </Drawer>
   );
-}
+};
 
 const styles = {
   handler: {
@@ -184,3 +196,5 @@ const styles = {
     py: '0',
   },
 };
+
+export default MobileDrawer;

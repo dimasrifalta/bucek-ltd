@@ -5,15 +5,16 @@ import { Link } from 'components/link';
 export default function Logo({ src, ...rest }) {
   return (
     <Link
-      path='/'
+      path="/"
       sx={{
         variant: 'links.logo',
         display: 'flex',
         cursor: 'pointer',
         mr: 15,
       }}
-      {...rest}>
-      <Image src={src} alt='nextjs landing logo' />
+      {...rest}
+    >
+      <Image src={src} alt="startup landing logo" />
     </Link>
   );
 }
